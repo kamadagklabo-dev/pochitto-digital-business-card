@@ -20,6 +20,8 @@ const products = [
 export default function Home() {
   const [sent, setSent] = useState(false);
   const [showQr, setShowQr] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   function saveContact() {
     const vcard = [
@@ -34,9 +36,34 @@ export default function Home() {
     URL.revokeObjectURL(link.href);
   }
 
-  function submitForm(event: FormEvent<HTMLFormElement>) {
+  async function submitForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    const gasApiUrl = import.meta.env.VITE_GAS_API_URL;
+    if (!gasApiUrl) {
+      setSendError("送信先が設定されていません。管理者へお問い合わせください。");
+      return;
+    }
+
+    setSending(true);
+    setSendError("");
+    try {
+      const form = event.currentTarget;
+      const payload = new URLSearchParams();
+      new FormData(form).forEach((value, key) => payload.append(key, String(value)));
+      payload.append("source", "pochitto-digital-business-card");
+      await fetch(gasApiUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+        body: payload,
+      });
+      form.reset();
+      setSent(true);
+    } catch {
+      setSendError("送信できませんでした。時間をおいて、もう一度お試しください。");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -149,7 +176,8 @@ export default function Home() {
                 <label>電話番号<input type="tel" name="phone" placeholder="090-0000-0000" /></label>
               </div>
               <label>今日のお話・ご相談内容 <b>必須</b><textarea required name="message" placeholder="気になっていることを、ご自由にどうぞ。" /></label>
-              <button className="submit" type="submit">内容を送る <span>→</span></button>
+              {sendError && <p className="form-error" role="alert">{sendError}</p>}
+              <button className="submit" type="submit" disabled={sending}>{sending ? "送信中…" : "内容を送る"} <span>→</span></button>
               <small className="privacy">入力いただいた情報は、ご連絡のためだけに使用します。</small>
             </form>
           )}
