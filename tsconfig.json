@@ -17,11 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "src/vite-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mts"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "app/page.tsx"],
   "exclude": ["node_modules"]
 }

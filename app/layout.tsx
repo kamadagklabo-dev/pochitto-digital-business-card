@@ -3,9 +3,34 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "鎌田エリ子 | ぽちっと電子名刺",
-  description: "現場の「困った」を、仕組みで解決。かまだWorks 鎌田エリ子の電子名刺です。",
+  description: "現場の「困った」を、仕組みでやさしく。KAMADA WORKS 鎌田エリ子の電子名刺です。",
+  openGraph: {
+    title: "鎌田エリ子 | ぽちっと電子名刺",
+    description: "現場の「困った」を、仕組みでやさしく。",
+    type: "website",
+    locale: "ja_JP",
+    images: [{ url: "/og.png", width: 1536, height: 1024, alt: "KAMADA WORKS 鎌田エリ子の電子名刺" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "鎌田エリ子 | ぽちっと電子名刺",
+    description: "現場の「困った」を、仕組みでやさしく。",
+    images: ["/og.png"],
+  },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ja"><body>{children}</body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="ja">
+      <body>{children}</body>
+    </html>
+  );
 }
