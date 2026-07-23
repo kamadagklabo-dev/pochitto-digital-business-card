@@ -28,7 +28,7 @@ export default function Home() {
 
   function saveContact() {
     const vcard = [
-      "BEGIN:VCARD", "VERSION:3.0", "N:鎌田;エリ子;;;", "FN:鎌田 エリ子",
+      "BEGIN:VCARD", "VERSION:3.0", "N:かまだ;えりこ;;;", "FN:かまだえりこ",
       "ORG:KAMADA WORKS", "TITLE:小さな事業者のDXパートナー",
       "TEL;TYPE=CELL:090-0000-0000", "EMAIL:hello@kamada-works.jp",
       "URL:https://kamada-works.jp", "ADR:;;栃木県;;;;", "END:VCARD",
@@ -42,7 +42,7 @@ export default function Home() {
 
   async function shareCard() {
     if (navigator.share) {
-      await navigator.share({ title: "鎌田エリ子｜電子名刺", text: "KAMADA WORKS 鎌田エリ子の電子名刺です。", url: pageUrl });
+      await navigator.share({ title: "かまだえりこ｜電子名刺", text: "KAMADA WORKS かまだえりこの電子名刺です。", url: pageUrl });
     } else {
       await navigator.clipboard.writeText(pageUrl);
       alert("名刺のURLをコピーしました。");
@@ -93,9 +93,9 @@ export default function Home() {
             <span className="card-logo"><img src="/kamadaworks.jpg" alt="KAMADA WORKS" /></span>
             <span className="card-body">
               <small>KAMADA WORKS</small>
-              <strong>鎌田 エリ子</strong>
+              <strong>かまだえりこ</strong>
               <span>DXサポーター / システム開発</span>
-              <em>小さな事業者のDXパートナー</em>
+              <em>かまちゃんって呼んでください</em>
             </span>
             <span className="card-footer"><span>TOCHIGI · ONLINE</span><b>名刺をひらく　↗</b></span>
           </button>
@@ -110,7 +110,7 @@ export default function Home() {
             <button className="sheet-close" onClick={() => setCardOpen(false)} aria-label="閉じる">×</button>
             <div className="sheet-person">
               <img src="/kamadaworks.jpg" alt="KAMADA WORKS" />
-              <div><small>小さな事業者のDXパートナー</small><h2>鎌田 エリ子</h2><p>栃木 · Online</p></div>
+              <div><small>小さな事業者のDXパートナー</small><h2>かまだえりこ</h2><p>かまちゃんって呼んでください</p></div>
             </div>
             <div className="quick-actions">
               <button onClick={saveContact}><i>＋</i><span>保存</span></button>
@@ -132,7 +132,7 @@ export default function Home() {
         <div className="about-grid">
           <h2>仕組みをつくる前に、<br />お話を聞かせてください。</h2>
           <div>
-            <p>はじめまして、鎌田エリ子です。介護や小さな事業の現場で生まれる「もっとこうだったらいいのに」を、デジタルの力で形にしています。</p>
+            <p>はじめまして、かまだえりこです。かまちゃんって呼んでください。介護や小さな事業の現場で生まれる「もっとこうだったらいいのに」を、デジタルの力で形にしています。</p>
             <p>新しいシステムを入れることが目的ではありません。使う人がほっとできて、仕事が少し楽になることを大切にしています。</p>
             <div className="tags"><span>わかりやすく</span><span>一緒に考える</span><span>小さく始める</span></div>
           </div>
